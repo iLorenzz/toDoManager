@@ -65,4 +65,8 @@ public class Task {
     public String getProgressStatus(){
         return progressStatus.getStatus();
     }
+
+    public void setTaskProgressStatus(ProgressStatus progressStatus) {
+        this.progressStatus = progressStatus;
+    }
 }

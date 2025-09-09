@@ -3,6 +3,7 @@ package com.iLorenzz.toDo.service;
 import com.iLorenzz.toDo.dto.RequestTask;
 import com.iLorenzz.toDo.dto.Task;
 import com.iLorenzz.toDo.dto.enums.Priority;
+import com.iLorenzz.toDo.dto.enums.ProgressStatus;
 import com.iLorenzz.toDo.utils.TaskUtils;
 
 import java.util.ArrayList;
@@ -28,5 +29,11 @@ public class TaskService {
         Task toRemoveTask = TaskUtils.getTaskById(taskId, allTasks);
 
         allTasks.remove(toRemoveTask);
+    }
+
+    public void changeStatus(int taskId, int newStatus) throws Exception{
+        Task toChangeStatus = TaskUtils.getTaskById(taskId, allTasks);
+
+        toChangeStatus.setTaskProgressStatus(ProgressStatus.getProgressStatus(newStatus));
     }
 }

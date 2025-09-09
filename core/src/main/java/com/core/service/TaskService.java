@@ -18,4 +18,10 @@ public class TaskService {
 
         return response;
     }
+
+    public List<Task> getAllTasks(){
+        return allTasks;
+    }
+
+    
 }

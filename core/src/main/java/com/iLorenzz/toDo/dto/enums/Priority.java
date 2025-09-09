@@ -1,4 +1,4 @@
-package com.core.dto.enums;
+package com.iLorenzz.toDo.dto.enums;
 
 public enum Priority {
     CRITICAL,

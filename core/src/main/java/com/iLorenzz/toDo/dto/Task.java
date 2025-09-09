@@ -1,8 +1,8 @@
-package com.core.dto;
+package com.iLorenzz.toDo.dto;
 
 
-import com.core.dto.enums.Priority;
-import com.core.dto.enums.ProgressStatus;
+import com.iLorenzz.toDo.dto.enums.Priority;
+import com.iLorenzz.toDo.dto.enums.ProgressStatus;
 
 import java.time.LocalDate;
 import java.util.concurrent.atomic.AtomicInteger;

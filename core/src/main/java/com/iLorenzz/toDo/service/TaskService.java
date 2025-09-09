@@ -1,8 +1,8 @@
-package com.core.service;
+package com.iLorenzz.toDo.service;
 
-import com.core.dto.RequestTask;
-import com.core.dto.Task;
-import com.core.dto.enums.Priority;
+import com.iLorenzz.toDo.dto.RequestTask;
+import com.iLorenzz.toDo.dto.Task;
+import com.iLorenzz.toDo.dto.enums.Priority;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,5 +23,7 @@ public class TaskService {
         return allTasks;
     }
 
-    
+    public void removeTask(int taskId){
+
+    }
 }

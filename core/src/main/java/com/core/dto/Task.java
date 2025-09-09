@@ -1,6 +1,9 @@
 package com.core.dto;
 
 
+import com.core.dto.enums.Priority;
+import com.core.dto.enums.ProgressStatus;
+
 import java.time.LocalDate;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -13,13 +16,18 @@ public class Task {
     public final LocalDate taskInitialDate;
     public LocalDate taskEndDate;
     //Todo status and priority elements
+    public ProgressStatus progressStatus;
+    public Priority priority;
 
-    public Task(String title, String description, LocalDate taskEndDate){
+    public Task(String title, String description, LocalDate taskEndDate, Priority priority){
         this.taskId = idCounter.incrementAndGet() + 1;
         this.title = title;
         this.description = description;
         this.taskInitialDate = LocalDate.now();
         this.taskEndDate = taskEndDate;
+
+        this.progressStatus = ProgressStatus.ACTIVE;
+        this.priority = priority;
     }
 
     public int getTaskId() {
@@ -52,5 +60,9 @@ public class Task {
 
     public void setTaskEndDate(LocalDate taskEndDate) {
         this.taskEndDate = taskEndDate;
+    }
+
+    public String getProgressStatus(){
+        return progressStatus.getStatus();
     }
 }

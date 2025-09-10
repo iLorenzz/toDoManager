@@ -11,6 +11,13 @@ import java.util.List;
 
 public class TaskService {
     private final List<Task> allTasks = new ArrayList<>();
+    private final static TaskService taskService = new TaskService();
+
+    private TaskService(){}
+
+    public static synchronized TaskService getTaskServiceInstance(){
+        return taskService;
+    }
 
     public Task createNewTask(RequestTask request){
         Priority priority = Priority.getPriority(request.priority_number());

@@ -12,4 +12,15 @@ public class TaskController {
     public static synchronized TaskController getTaskControllerInstance(){
         return taskController;
     }
+
+    public void loadOperation(String operation){
+        switch (operation){
+            case "create":
+                createTask();
+        }
+    }
+
+    private void createTask(){
+
+    }
 }

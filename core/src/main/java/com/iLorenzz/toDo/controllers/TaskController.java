@@ -2,10 +2,12 @@ package com.iLorenzz.toDo.controllers;
 
 import com.iLorenzz.io.Input;
 import com.iLorenzz.toDo.dto.RequestTask;
+import com.iLorenzz.toDo.dto.Task;
 import com.iLorenzz.toDo.dto.enums.Priority;
 import com.iLorenzz.toDo.service.TaskService;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class TaskController {
     private final TaskService taskService = TaskService.getTaskServiceInstance();
@@ -24,6 +26,8 @@ public class TaskController {
                 String statusResponse = postTask();
                 //TODO: print the status response
                 break;
+            case "getAll":
+                //TODO: print all tasks
         }
     }
 
@@ -37,5 +41,10 @@ public class TaskController {
 
         taskService.createNewTask(new RequestTask(newTaskTitle, newTaskDescription, formatedNewTaskEndDate, newTaskPriority));
         return "OK: created";
+    }
+
+    private List<Task> getAll(){
+        TaskService taskService = TaskService.getTaskServiceInstance();
+        return taskService.getAllTasks();
     }
 }

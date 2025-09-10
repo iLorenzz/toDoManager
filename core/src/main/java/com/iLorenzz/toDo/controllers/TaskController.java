@@ -1,6 +1,11 @@
 package com.iLorenzz.toDo.controllers;
 
+import com.iLorenzz.io.Input;
+import com.iLorenzz.toDo.dto.RequestTask;
+import com.iLorenzz.toDo.dto.enums.Priority;
 import com.iLorenzz.toDo.service.TaskService;
+
+import java.time.LocalDate;
 
 public class TaskController {
     private final TaskService taskService = TaskService.getTaskServiceInstance();
@@ -16,11 +21,19 @@ public class TaskController {
     public void loadOperation(String operation){
         switch (operation){
             case "create":
-                createTask();
+                postTask();
+                break;
         }
     }
 
-    private void createTask(){
+    private void postTask(){
+        String newTaskTitle = Input.read();
+        String newTaskDescription = Input.read();
+        int newTaskPriority = Integer.parseInt(Input.read());
+        String newTaskEndDate = Input.read();
 
+        LocalDate formatedNewTaskEndDate = LocalDate.parse(newTaskEndDate);
+
+        taskService.createNewTask(new RequestTask(newTaskTitle, newTaskDescription, formatedNewTaskEndDate, newTaskPriority));
     }
 }

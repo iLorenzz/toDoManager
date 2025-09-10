@@ -5,6 +5,7 @@ import com.iLorenzz.toDo.dto.RequestTask;
 import com.iLorenzz.toDo.dto.Task;
 import com.iLorenzz.toDo.dto.enums.Priority;
 import com.iLorenzz.toDo.service.TaskService;
+import com.iLorenzz.toDo.utils.TaskUtils;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -20,7 +21,7 @@ public class TaskController {
         return taskController;
     }
 
-    public void loadOperation(String operation){
+    public void loadOperation(String operation, int id) throws Exception {
         switch (operation){
             case "create":
                 String statusResponse = postTask();
@@ -28,6 +29,10 @@ public class TaskController {
                 break;
             case "getAll":
                 //TODO: print all tasks
+                break;
+            case "spec":
+                spec(id);
+                break;
         }
     }
 
@@ -44,7 +49,11 @@ public class TaskController {
     }
 
     private List<Task> getAll(){
-        TaskService taskService = TaskService.getTaskServiceInstance();
         return taskService.getAllTasks();
+    }
+
+    private Task spec(int id) throws Exception{
+        Task task = TaskUtils.getTaskById(id, taskService.getAllTasks());
+        return task;
     }
 }

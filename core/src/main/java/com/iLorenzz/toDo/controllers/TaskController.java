@@ -3,11 +3,13 @@ package com.iLorenzz.toDo.controllers;
 import com.iLorenzz.toDo.service.TaskService;
 
 public class TaskController {
-    private final TaskService taskService;
+    private final TaskService taskService = TaskService.getTaskServiceInstance();
+    private static final TaskController taskController = new TaskController();
 
-    public TaskController(TaskService taskService){
-        this.taskService = taskService;
+    private TaskController(){
     }
 
-
+    public static synchronized TaskController getTaskControllerInstance(){
+        return taskController;
+    }
 }

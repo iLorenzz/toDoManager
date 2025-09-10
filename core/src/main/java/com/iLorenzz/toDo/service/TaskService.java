@@ -10,8 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskService {
-    private final List<Task> allTasks = new ArrayList<>();
     private final static TaskService taskService = new TaskService();
+
+    private final List<Task> allTasks = new ArrayList<>();
 
     private TaskService(){}
 

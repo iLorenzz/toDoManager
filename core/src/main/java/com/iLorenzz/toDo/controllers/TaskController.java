@@ -33,6 +33,9 @@ public class TaskController {
             case "spec":
                 spec(id);
                 break;
+            case "delete":
+                statusResponse = delete(id);
+                //TODO: print status response
         }
     }
 
@@ -55,5 +58,10 @@ public class TaskController {
     private Task spec(int id) throws Exception{
         Task task = TaskUtils.getTaskById(id, taskService.getAllTasks());
         return task;
+    }
+
+    private String delete(int id) throws Exception{
+        taskService.removeTask(id);
+        return "Ok: deleted";
     }
 }

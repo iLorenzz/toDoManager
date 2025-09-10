@@ -21,12 +21,13 @@ public class TaskController {
     public void loadOperation(String operation){
         switch (operation){
             case "create":
-                postTask();
+                String statusResponse = postTask();
+                //TODO: print the status response
                 break;
         }
     }
 
-    private void postTask(){
+    private String postTask(){
         String newTaskTitle = Input.read();
         String newTaskDescription = Input.read();
         int newTaskPriority = Integer.parseInt(Input.read());
@@ -35,5 +36,6 @@ public class TaskController {
         LocalDate formatedNewTaskEndDate = LocalDate.parse(newTaskEndDate);
 
         taskService.createNewTask(new RequestTask(newTaskTitle, newTaskDescription, formatedNewTaskEndDate, newTaskPriority));
+        return "OK: created";
     }
 }

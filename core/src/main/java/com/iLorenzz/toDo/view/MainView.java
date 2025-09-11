@@ -27,6 +27,9 @@ public class MainView extends View{
     @Override
     public void drawView() {
         List<Task> allTasks = taskService.getAllTasks();
+
+        Output.write(operationMenu, true);
+
         if(allTasks.isEmpty()){
             Output.write("You don't have a task", true);
             Output.writeNewLine();
@@ -34,7 +37,6 @@ public class MainView extends View{
             allTasks.forEach(System.out::println);
         }
 
-        Output.write(operationMenu, true);
         Output.write("Choose an operation: ");
     }
 }

@@ -4,14 +4,16 @@ import io.Input;
 import com.iLorenzz.toDo.utils.TaskUtils;
 import com.iLorenzz.toDo.view.MainView;
 
+import java.util.List;
+
 public class ApplicationController {
-    public static void start(){
+    public static void start() throws Exception {
         //TODO: deserialization
 
         MainView mainView = MainView.getMainViewInstance();
         TaskController taskController = TaskController.getTaskControllerInstance();
         do{
-            mainView.drawView();
+            taskController.loadOperation("getAll", 0);
             String command = Input.read();
 
             if(command.equals("close")){

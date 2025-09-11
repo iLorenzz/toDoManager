@@ -1,5 +1,6 @@
 package com.iLorenzz.toDo.controllers;
 
+import com.iLorenzz.toDo.view.MainView;
 import io.Input;
 import com.iLorenzz.toDo.dto.RequestTask;
 import com.iLorenzz.toDo.dto.Task;
@@ -28,6 +29,8 @@ public class TaskController {
                 break;
             case "getAll":
                 //TODO: print all tasks
+                MainView mainView = MainView.getMainViewInstance();
+                mainView.drawView(getAll());
                 break;
             case "spec":
                 spec(id);

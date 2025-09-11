@@ -24,10 +24,7 @@ public class MainView extends View{
         return mainView;
     }
 
-    @Override
-    public void drawView() {
-        List<Task> allTasks = taskService.getAllTasks();
-
+    public void drawView(List<Task> allTasks) {
         Output.write(operationMenu, true);
 
         if(allTasks.isEmpty()){

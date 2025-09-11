@@ -2,11 +2,10 @@ package com.iLorenzz.toDo.view;
 
 import io.Output;
 import com.iLorenzz.toDo.dto.Task;
-import com.iLorenzz.toDo.service.TaskService;
 
 import java.util.List;
 
-public class MainView extends View{
+public class MainView{
     private static final String menu = """
                 "create": to create a new task
                 "spec/{id}": to access information about a specified task
@@ -14,10 +13,10 @@ public class MainView extends View{
                 "close": to stop the program
                 """;
     private static final MainView mainView = new MainView();
-    private final TaskService taskService = TaskService.getTaskServiceInstance();
+    private final String operationMenu;
 
     private MainView(){
-        super(menu);
+        operationMenu = menu;
     }
 
     public static MainView getMainViewInstance() {

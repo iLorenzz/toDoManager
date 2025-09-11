@@ -3,6 +3,7 @@ package com.iLorenzz.toDo.controllers;
 import io.Input;
 import com.iLorenzz.toDo.utils.TaskUtils;
 import com.iLorenzz.toDo.view.MainView;
+import io.Output;
 
 import java.util.List;
 
@@ -14,7 +15,10 @@ public class ApplicationController {
         TaskController taskController = TaskController.getTaskControllerInstance();
         do{
             taskController.loadOperation("getAll", 0);
+            Output.writeNewLine();
+            
             String command = Input.read();
+            Output.writeNewLine();
 
             if(command.equals("close")){
                 System.exit(0);

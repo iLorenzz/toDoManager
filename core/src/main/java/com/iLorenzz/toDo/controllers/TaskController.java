@@ -1,17 +1,22 @@
 package com.iLorenzz.toDo.controllers;
 
+import com.iLorenzz.toDo.view.CreateView;
 import com.iLorenzz.toDo.view.MainView;
 import io.Input;
 import com.iLorenzz.toDo.dto.RequestTask;
 import com.iLorenzz.toDo.dto.Task;
 import com.iLorenzz.toDo.service.TaskService;
 import com.iLorenzz.toDo.utils.TaskUtils;
+import io.Output;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class TaskController {
     private final TaskService taskService = TaskService.getTaskServiceInstance();
+    private final MainView mainView = MainView.getMainViewInstance();
+    private final CreateView createView = CreateView.getCreateViewInstance();
     private static final TaskController taskController = new TaskController();
 
     private TaskController(){
@@ -22,14 +27,15 @@ public class TaskController {
     }
 
     public void loadOperation(String operation, int id) throws Exception {
+        String statusResponse;
+
         switch (operation){
             case "create":
-                String statusResponse = postTask();
-                //TODO: print the status response
+                createView.drawView();
+                statusResponse = postTask();
+                Output.write(statusResponse, true);
                 break;
             case "getAll":
-                //TODO: print all tasks
-                MainView mainView = MainView.getMainViewInstance();
                 mainView.drawView(getAll());
                 break;
             case "spec":
@@ -42,13 +48,18 @@ public class TaskController {
         }
     }
 
-    private String postTask(){
-        String newTaskTitle = Input.read();
-        String newTaskDescription = Input.read();
-        int newTaskPriority = Integer.parseInt(Input.read());
-        String newTaskEndDate = Input.read();
+    private String postTask() throws Exception{
+        List<String> body = createView.getRequestBody();
+        if(body.size() != 4){
+            throw new Exception();
+        }
 
-        LocalDate formatedNewTaskEndDate = LocalDate.parse(newTaskEndDate);
+        String newTaskTitle = body.get(0);
+        String newTaskDescription = body.get(1);
+        int newTaskPriority = Integer.parseInt(body.get(2));
+        String newTaskEndDate = body.get(3);
+
+        LocalDate formatedNewTaskEndDate = LocalDate.parse(newTaskEndDate, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
         taskService.createNewTask(new RequestTask(newTaskTitle, newTaskDescription, formatedNewTaskEndDate, newTaskPriority));
         return "OK: created";

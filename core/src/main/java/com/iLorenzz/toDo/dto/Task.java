@@ -69,4 +69,17 @@ public class Task {
     public void setTaskProgressStatus(ProgressStatus progressStatus) {
         this.progressStatus = progressStatus;
     }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "taskId=" + taskId +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", taskInitialDate=" + taskInitialDate +
+                ", taskEndDate=" + taskEndDate +
+                ", progressStatus=" + progressStatus +
+                ", priority=" + priority +
+                '}';
+    }
 }

@@ -1,9 +1,8 @@
 package com.iLorenzz.toDo.controllers;
 
-import com.iLorenzz.io.Input;
+import io.Input;
 import com.iLorenzz.toDo.dto.RequestTask;
 import com.iLorenzz.toDo.dto.Task;
-import com.iLorenzz.toDo.dto.enums.Priority;
 import com.iLorenzz.toDo.service.TaskService;
 import com.iLorenzz.toDo.utils.TaskUtils;
 
@@ -36,6 +35,7 @@ public class TaskController {
             case "delete":
                 statusResponse = delete(id);
                 //TODO: print status response
+                break;
         }
     }
 

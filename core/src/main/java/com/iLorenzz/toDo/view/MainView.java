@@ -1,6 +1,6 @@
 package com.iLorenzz.toDo.view;
 
-import com.iLorenzz.io.Output;
+import io.Output;
 import com.iLorenzz.toDo.dto.Task;
 import com.iLorenzz.toDo.service.TaskService;
 
@@ -28,7 +28,8 @@ public class MainView extends View{
     public void drawView() {
         List<Task> allTasks = taskService.getAllTasks();
         if(allTasks.isEmpty()){
-            Output.write("Tasks are empty");
+            Output.write("You don't have a task", true);
+            Output.writeNewLine();
         } else {
             allTasks.forEach(System.out::println);
         }

@@ -1,4 +1,4 @@
-package com.iLorenzz.io;
+package io;
 
 public final class Output {
     private  Output() {}

@@ -1,4 +1,4 @@
-package com.iLorenzz.io;
+package io;
 
 import java.util.Scanner;
 

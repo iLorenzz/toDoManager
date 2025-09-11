@@ -16,4 +16,9 @@ public final class TaskUtils {
 
         throw  new Exception();
     }
+
+    public static String[] extractTaskIdFromCommand(String command){
+        String[] splitedCommand = command.split("/");
+        return splitedCommand;
+    }
 }

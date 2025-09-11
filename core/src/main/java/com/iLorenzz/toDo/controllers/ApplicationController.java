@@ -1,0 +1,38 @@
+package com.iLorenzz.toDo.controllers;
+
+import io.Input;
+import com.iLorenzz.toDo.utils.TaskUtils;
+import com.iLorenzz.toDo.view.MainView;
+
+public class ApplicationController {
+    public static void start(){
+        //TODO: deserialization
+
+        MainView mainView = MainView.getMainViewInstance();
+        TaskController taskController = TaskController.getTaskControllerInstance();
+        do{
+            mainView.drawView();
+            String command = Input.read();
+
+            if(command.equals("close")){
+                System.exit(0);
+            }
+
+            String[] splitedCommand = TaskUtils.extractTaskIdFromCommand(command);
+            String operation = splitedCommand[0];
+
+            int taskId;
+            if(splitedCommand.length < 2){
+                taskId = 0;
+            }else{
+                taskId = Integer.parseInt(splitedCommand[1]);
+            }
+
+            try{
+                taskController.loadOperation(operation, taskId);
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+        }while(true);
+    }
+}

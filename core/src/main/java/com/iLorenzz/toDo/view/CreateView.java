@@ -6,7 +6,7 @@ import io.Output;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CreateView{
+public class CreateView implements View{
     private static final CreateView createView = new CreateView();
 
     private CreateView(){
@@ -16,6 +16,7 @@ public class CreateView{
         return createView;
     }
 
+    @Override
     public void drawView() {
         String createMessage = "----------Creating new task----------";
         Output.write(createMessage, true);

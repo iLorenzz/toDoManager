@@ -20,13 +20,11 @@ public class TaskService {
         return taskService;
     }
 
-    public Task createNewTask(RequestTask request){
+    public void createNewTask(RequestTask request){
         Priority priority = Priority.getPriority(request.priority_number());
 
         Task response = new Task(request.title(), request.description(), request.taskEndDate(), priority);
         allTasks.add(response);
-
-        return response;
     }
 
     public List<Task> getAllTasks(){
@@ -43,5 +41,9 @@ public class TaskService {
         Task toChangeStatus = TaskUtils.getTaskById(taskId, allTasks);
 
         toChangeStatus.setTaskProgressStatus(ProgressStatus.getProgressStatus(newStatus));
+    }
+
+    public void changeTitle(String newTitle, Task task){
+        task.setTitle(newTitle);
     }
 }

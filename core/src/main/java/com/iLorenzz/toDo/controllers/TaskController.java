@@ -17,6 +17,8 @@ public class TaskController {
     private final TaskService taskService = TaskService.getTaskServiceInstance();
     private final MainView mainView = MainView.getMainViewInstance();
     private final CreateView createView = CreateView.getCreateViewInstance();
+    private final SpecController specController = SpecController.getSpecControllerInstance();
+
     private static final TaskController taskController = new TaskController();
 
     private TaskController(){
@@ -45,6 +47,8 @@ public class TaskController {
                 statusResponse = delete(id);
                 //TODO: print status response
                 break;
+            default:
+                throw new Exception();
         }
     }
 
@@ -69,13 +73,22 @@ public class TaskController {
         return taskService.getAllTasks();
     }
 
-    private Task spec(int id) throws Exception{
+    private void spec(int id) throws Exception{
         Task task = TaskUtils.getTaskById(id, taskService.getAllTasks());
-        return task;
+        SpecController.setCurrentTask(task);
+        //TODO: call view
+
+        String operation = Input.read();
+        specController.loadOperation(operation);
+
     }
 
     private String delete(int id) throws Exception{
         taskService.removeTask(id);
         return "Ok: deleted";
+    }
+
+    protected void patchTitle(String title, Task task){
+        taskService.changeTitle(title, task);
     }
 }

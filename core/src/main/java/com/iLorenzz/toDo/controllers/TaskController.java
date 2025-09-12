@@ -2,6 +2,7 @@ package com.iLorenzz.toDo.controllers;
 
 import com.iLorenzz.toDo.view.CreateView;
 import com.iLorenzz.toDo.view.MainView;
+import com.iLorenzz.toDo.view.SpecView;
 import io.Input;
 import com.iLorenzz.toDo.dto.RequestTask;
 import com.iLorenzz.toDo.dto.Task;
@@ -24,7 +25,7 @@ public class TaskController {
     private TaskController(){
     }
 
-    public static synchronized TaskController getTaskControllerInstance(){
+    public static TaskController getTaskControllerInstance(){
         return taskController;
     }
 
@@ -76,12 +77,18 @@ public class TaskController {
 
     private void spec(int id) throws Exception{
         Task task = TaskUtils.getTaskById(id, taskService.getAllTasks());
+        SpecView specView = SpecView.getSpecViewInstance();
         SpecController.setCurrentTask(task);
-        //TODO: call view
 
-        String operation = Input.read();
-        specController.loadOperation(operation);
+        do {
+            specView.drawView(task);
+            String operation = Input.read();
+            if (operation.equals("back")) {
+                return;
+            }
 
+            specController.loadOperation(operation);
+        }while(true);
     }
 
     private String delete(int id) throws Exception{

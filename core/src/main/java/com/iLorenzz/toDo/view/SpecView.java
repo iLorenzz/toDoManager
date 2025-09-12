@@ -1,18 +1,29 @@
 package com.iLorenzz.toDo.view;
 
-public class SpecView implements View{
+import com.iLorenzz.toDo.dto.Task;
+import io.Output;
+
+public class SpecView {
     private static final SpecView specView = new SpecView();
-    private static final String spec = """
-                "create": to create a new task
-                "spec/{id}": to access information about a specified task
-                "delete/{id}": to delete a task
-                "close": to stop the program
+    private static final String specOperations = """
+                "title": to change the task title
+                "description": to update the task description
+                "status": to update the task status;
+                "back": to return main view
                 """;
 
     private SpecView(){}
 
-    @Override
-    public void drawView() {
+    public static SpecView getSpecViewInstance(){
+        return specView;
+    }
 
+    public void drawView(Task task) {
+        Output.write("------------------Change options-------------------", true);
+        Output.write(specOperations, true);
+
+        Output.write(task, true);
+
+        Output.write("Choose an element to update: ");
     }
 }

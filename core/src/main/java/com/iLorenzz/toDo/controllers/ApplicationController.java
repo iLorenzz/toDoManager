@@ -16,13 +16,14 @@ public class ApplicationController {
         do{
             taskController.loadOperation("getAll", 0);
             Output.writeNewLine();
-            
+
             String command = Input.read();
-            Output.writeNewLine();
 
             if(command.equals("close")){
                 System.exit(0);
             }
+
+            Output.writeNewLine();
 
             String[] splitedCommand = TaskUtils.extractTaskIdFromCommand(command);
             String operation = splitedCommand[0];

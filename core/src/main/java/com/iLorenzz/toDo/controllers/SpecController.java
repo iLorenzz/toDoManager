@@ -7,7 +7,7 @@ import io.Output;
 public class SpecController {
     private static final SpecController specController = new SpecController();
     private static Task currentTask;
-    private static TaskController taskController = TaskController.getTaskControllerInstance();
+    private static final TaskController taskController = TaskController.getTaskControllerInstance();
 
     private SpecController(){}
 
@@ -15,12 +15,14 @@ public class SpecController {
         return specController;
     }
 
-    public void loadOperation(String operation){
+    public void loadOperation(String operation) throws Exception{
         switch(operation){
-            case "change title":
+            case "title":
                 changeTitle();
-            case "change description":
+            case "description":
                 changeDescription();
+            case "status":
+                changeProgressStatus();
         }
     }
 
@@ -35,7 +37,14 @@ public class SpecController {
         Output.write("new description: ");
         String newDescription = Input.read();
 
+        taskController.patchDescription(newDescription, currentTask);
+    }
 
+    private void changeProgressStatus() throws Exception{
+        Output.write("new status: ");
+        String newProgressStatus = Input.read();
+
+        taskController.patchProgressStatus(Integer.parseInt(newProgressStatus), currentTask);
     }
 
     public static void setCurrentTask(Task task){

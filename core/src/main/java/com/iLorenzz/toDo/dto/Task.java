@@ -20,7 +20,7 @@ public class Task {
     public Priority priority;
 
     public Task(String title, String description, LocalDate taskEndDate, Priority priority){
-        this.taskId = idCounter.incrementAndGet() + 1;
+        this.taskId = idCounter.incrementAndGet();
         this.title = title;
         this.description = description;
         this.taskInitialDate = LocalDate.now();

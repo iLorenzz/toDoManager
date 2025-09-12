@@ -36,6 +36,7 @@ public class TaskController {
                 createView.drawView();
                 statusResponse = postTask();
                 Output.write(statusResponse, true);
+                Output.writeNewLine();
                 break;
             case "getAll":
                 mainView.drawView(getAll());
@@ -88,7 +89,15 @@ public class TaskController {
         return "Ok: deleted";
     }
 
-    protected void patchTitle(String title, Task task){
-        taskService.changeTitle(title, task);
+    protected void patchTitle(String newTitle, Task task){
+        taskService.changeTitle(newTitle, task);
+    }
+
+    protected void patchDescription(String newDescription, Task task){
+        taskService.changeDescription(newDescription, task);
+    }
+
+    protected void patchProgressStatus(int newProgressStatus, Task task)throws Exception{
+        taskService.changeStatus(newProgressStatus, task);
     }
 }

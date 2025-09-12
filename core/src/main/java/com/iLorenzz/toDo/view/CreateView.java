@@ -42,7 +42,7 @@ public class CreateView implements View{
                 3. Low
                 4. Optional
                
-                task priority:
+               task priority:
                """);
         String newTaskPriority = Input.read();
         requestBody.add(newTaskPriority);

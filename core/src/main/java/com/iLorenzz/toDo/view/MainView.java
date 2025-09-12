@@ -28,10 +28,11 @@ public class MainView{
 
         if(allTasks.isEmpty()){
             Output.write("You don't have a task", true);
-            Output.writeNewLine();
         } else {
             allTasks.forEach(System.out::println);
         }
+
+        Output.writeNewLine();
 
         Output.write("Choose an operation: ");
     }

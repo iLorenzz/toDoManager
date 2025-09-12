@@ -37,13 +37,15 @@ public class TaskService {
         allTasks.remove(toRemoveTask);
     }
 
-    public void changeStatus(int taskId, int newStatus) throws Exception{
-        Task toChangeStatus = TaskUtils.getTaskById(taskId, allTasks);
-
-        toChangeStatus.setTaskProgressStatus(ProgressStatus.getProgressStatus(newStatus));
+    public void changeStatus(int newStatus, Task task) throws Exception{
+        task.setTaskProgressStatus(ProgressStatus.getProgressStatus(newStatus));
     }
 
     public void changeTitle(String newTitle, Task task){
         task.setTitle(newTitle);
+    }
+
+    public void changeDescription(String newDescription, Task task){
+        task.setDescription(newDescription);
     }
 }
